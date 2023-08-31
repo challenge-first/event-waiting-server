@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: event-waiting-server
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  servlet:
+    encoding:
+      force: true
+  port: 8014
+
+kafka:
+  address: localhost:9092
+  topic:
+    coupon: coupon-topic
+
+logging:
+  level:
+    org.hibernate.sql: debug
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+  instance:
+    hostname: localhost:8014
+
+redis:
+  key:
+    event: 1
+    info: event_info
