@@ -1,6 +1,7 @@
 package com.example.eventwaitingserver.controller;
 
 import com.example.eventwaitingserver.dto.EventJoinRequestDto;
+import com.example.eventwaitingserver.dto.ResponseMessageDto;
 import com.example.eventwaitingserver.service.WaitingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,11 @@ public class WaitingController {
         this.waitingService = waitingService;
     }
 
-    @PostMapping("{eventId}/join")
-    public ResponseEntity<?> joinEvent(@PathVariable("eventId") Long eventId,
+    @PostMapping("/{eventId}")
+    public ResponseEntity<ResponseMessageDto> joinEvent(@PathVariable("eventId") Long eventId,
                                        @RequestBody EventJoinRequestDto requestDto) {
-        waitingService.addWaiting(eventId, requestDto.getMemberId());
+        ResponseMessageDto responseDto = waitingService.addWaiting(eventId, requestDto.getMemberId());
 
-        return ResponseEntity.status(HttpStatus.OK.value()).body(null);
+        return ResponseEntity.status(HttpStatus.OK.value()).body(responseDto);
     }
 }

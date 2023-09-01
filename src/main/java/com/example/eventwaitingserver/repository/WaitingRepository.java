@@ -25,4 +25,8 @@ public class WaitingRepository {
     public Long size(Long eventId) {
         return redisTemplate.opsForSet().size(eventId.toString());
     }
+
+    public boolean isMember(Long eventId, Long memberId) {
+        return redisTemplate.opsForSet().isMember(eventId.toString(), memberId);
+    }
 }

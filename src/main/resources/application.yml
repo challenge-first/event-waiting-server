@@ -30,9 +30,10 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
   instance:
-    hostname: localhost:8014
+    hostname: localhost
 
 redis:
+  lock: waiting-lock
   key:
     event: 1
     info: event_info
