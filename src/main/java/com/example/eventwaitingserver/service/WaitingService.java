@@ -37,16 +37,12 @@ public class WaitingService {
             }
 
             // 크리티컬 섹션 - 락으로 보호되어야 하는 코드
-            System.out.println("락을 획득했습니다. 크리티컬 섹션 실행");
-            System.out.println("memberId = " + memberId);
-
             waitingValidate(eventId, memberId);
 
             waitingRepository.add(eventId, memberId);
             kafkaProducer.send(eventId, memberId);
 
             lock.unlock();
-            System.out.println("락을 해제했습니다.");
 
             return new ResponseMessageDto("Success");
         } catch (Exception e) {

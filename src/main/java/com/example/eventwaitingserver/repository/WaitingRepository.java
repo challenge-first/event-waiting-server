@@ -27,6 +27,6 @@ public class WaitingRepository {
     }
 
     public boolean isMember(Long eventId, Long memberId) {
-        return redisTemplate.opsForSet().isMember(eventId.toString(), memberId);
+        return Boolean.TRUE.equals(redisTemplate.opsForSet().isMember(eventId.toString(), memberId.toString()));
     }
 }
